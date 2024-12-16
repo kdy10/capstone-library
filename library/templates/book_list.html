@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Book List</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'home.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav>
+            <div class="nav-left">
+                <a href="{% url 'book_list' %}" id="home-link">Home</a>
+                <a href="{% url 'about_us' %}" id="about-link">About Us</a>
+
+                {% if user.is_staff %}
+                    <a href="{% url 'archived_books' %}" class="btn-archive">Archive</a>
+                {% endif %}
+
+            </div>
+
+
+            <div class="nav-right">
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Log out</button>
+                </form>
+            </div>
+        </nav>
+
+        <div class="content">
+
+            {% if user.is_authenticated %}
+                <div class="welcome-container">
+                    <h1>Welcome, {{ user.username }}!</h1>
+                
+                    <!-- Check if the user is an admin -->
+                    {% if user.is_staff %}
+                        <p class="msg">Manage your library and ensure everything is up to date</p>
+                    {% else %}
+                        <p class="msg">Browse and explore capstone projects.</p>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <div class="search-add-container">  
+              
+                <form method="get" action="{% url 'book_list' %}">
+                    <div class="">
+                        <input type="text" name="q" placeholder="Search books..." value="{{ query }}">
+                        <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
+    
+                {% if user.is_staff %}
+                    <div class="add-button">
+                        <a href="{% url 'create_book' %}">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                {% endif %}
+
+            </div>
+
+            {% if books %}
+                    <div class="scrollable">
+                        <div class="books-container">
+                            {% for book in books %} 
+                            <a href="{% url 'book_detail' book.id %}">
+                                <div class="book-content"> 
+                                    <div class="file-icon">
+                                        <i class="fa-solid fa-file"></i>
+                                    </div>
+                                    <div>
+                                        <p class="title">{{ book.title }}</p>
+                                        <p class="author">by {{ book.author }}</p>
+                                    </div>
+                                </div>
+                            </a>  
+                            {% endfor %}
+                        </div>
+                    </div>  
+            {% else %}
+                <p>No books available.</p>
+            {% endif %}
+
+
+        </div>
+       
+    </body>
+
+    <script>
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-left a');
+    
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+
+</html>

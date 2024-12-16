@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About us</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'home.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    </head>
+
+    <body> 
+        <nav>
+            <div class="nav-left">
+                <a href="{% url 'book_list' %}" id="home-link">Home</a>
+                <a href="{% url 'about_us' %}" id="about-link">About Us</a>
+            </div>
+
+            <div class="nav-right">
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Log out</button>
+                </form>
+            </div>
+        </nav>
+        
+        <div class="content">
+            <h1 class="about-us">About Us</h1>
+            <p class="about-us-desc"> 
+                Welcome to the CLSU BSIT Capstone Projects Library, your platform for exploring and learning. 
+                Our system is designed to make it easy for students, faculty, and researchers to browse and access a collection of BSIT capstone projects.  <br><br>
+    
+                Here, you can discover innovative project ideas, read through abstracts of the documentation, and gain insights into the work of the CLSU BSIT community. 
+                The library is organized to help you find the resources you need quickly and efficiently, whether for inspiration, research, or reference.  <br><br>
+
+    
+                Our goal is to support learning and collaboration by providing a space where projects are showcased and shared. 
+                With this library, we aim to promote creativity and knowledge sharing while helping students and faculty stay connected with the latest IT solutions.  <br><br>
+    
+                Start browsing today and be part of a growing community of learners and innovators!
+            </p>
+
+            <h1 class="about-us">Our Team</h1>
+
+            <div class="team">
+                <div class="team-member">
+                    <img src="{% static 'img/dev-kiel.jpg' %}" alt="image">
+                    
+                    <div class="team-details">
+                        <p class="name">Kiel Leonard Palaad</p>
+                        <p class="section">BSIT 3-1</p>
+                    </div>
+                </div>  
+
+                <div class="team-member">
+                    <img src="{% static 'img/dev-krishae.png' %}" alt="image">
+                    
+                    <div class="team-details">
+                        <p class="name">Krishae Ann Dela Cruz</p>
+                        <p class="section">BSIT 3-1</p>
+                    </div>
+                </div>  
+
+                <div class="team-member">
+                    <img src="{% static 'img/dev-aldrex.jpg' %}" alt="image">
+                    
+                    <div class="team-details">
+                        <p class="name">Aldrex Tayong</p>
+                        <p class="section">BSIT 3-1</p>
+                    </div>
+                </div>  
+            </div>
+
+        </div>
+
+       
+
+    </body>
+
+    <script>
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-left a');
+    
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</html>

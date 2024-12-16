@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Archived Books</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'home.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav>
+            <div class="nav-left">
+                <a href="{% url 'book_list' %}" id="home-link">Home</a>
+                <a href="{% url 'about_us' %}" id="about-link">About Us</a>
+
+                {% if user.is_staff %}
+                    <a href="{% url 'archived_books' %}" id="archived-link">Archived Books</a>
+                {% endif %}
+                
+            </div>
+
+            <div class="nav-right">
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Log out</button>
+                </form>
+            </div>
+        </nav>
+
+        <div class="content">
+
+            {% if user.is_authenticated %}
+                <div class="welcome-container">
+                    <h1>Archived Books</h1>
+                    <p class="msg">Manage archived books here.</p>
+                </div>
+            {% endif %}
+
+            {% if books %}
+                <div class="scrollable">
+                    <div class="books-container">
+                        {% for book in books %}
+                            <div class="book-content">
+                                <div class="file-icon">
+                                    <i class="fa-solid fa-file"></i>
+                                </div>
+                                <div>
+                                    <p class="title">{{ book.title }}</p>
+                                    <p class="author">by {{ book.author }}</p>
+                                </div>
+                                <div class="actions">
+                                    <a href="{% url 'unarchive_book' book.id %}" class="btn-unarchive">Unarchive</a>
+                                    <a href="{% url 'delete_book_permanently' book.id %}" class="btn-delete" onclick="return confirm('Delete this book permanently?');">Delete</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                <p>No archived books available.</p>
+            {% endif %}
+
+        </div>
+
+    </body>
+
+    <script>
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-left a');
+
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</html>
