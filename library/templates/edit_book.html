@@ -1,142 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edit Book</title>
-        {% load static %}
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/thesis_library.css' %}">
-        <style>
-            body {
-                font-family: 'Inter', sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #f4f4f4;
-                color: #333;
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Book</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'img/CLSU Logo.png' %}" type="CLSU" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/thesis_library.css' %}" />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
 
-            .header {
-                background-color: #1E6031;
-                color: white;
-                padding: 1.5rem;
-                text-align: center;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                border-bottom: 4px solid #145022;
-            }
+      .header {
+        background-color: #1e6031;
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-bottom: 4px solid #145022;
+      }
 
-            .header h1 {
-                margin: 0;
-                font-size: 2rem;
-                font-weight: 600;
-            }
+      .header h1 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 600;
+      }
 
-            .content {
-                padding: 2rem;
-                max-width: 900px;
-                margin: 2rem auto;
-                background-color: white;
-                border-radius: 8px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
+      .content {
+        padding: 2rem;
+        max-width: 900px;
+        margin: 2rem auto;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
 
-            .form-group {
-                margin-bottom: 1.5rem;
-            }
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
 
-            .form-group label {
-                display: block;
-                margin-bottom: 0.5rem;
-                font-weight: 600;
-            }
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
 
-            .form-group input,
-            .form-group textarea,
-            .form-group select {
-                width: 100%;
-                padding: 0.75rem;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                font-size: 1rem;
-            }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+      }
 
-            .form-group textarea {
-                resize: vertical;
-                height: 150px;
-            }
+      .form-group textarea {
+        resize: vertical;
+        height: 150px;
+      }
 
-            .btn-div {
-                text-align: right;
-            }
+      .btn-div {
+        text-align: right;
+      }
 
-            .btn-div button {
-                background-color: #1E6031;
-                color: white;
-                padding: 0.75rem 1.5rem;
-                border: none;
-                border-radius: 4px;
-                font-size: 1rem;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-            }
+      .btn-div button {
+        background-color: #1e6031;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
 
-            .btn-div button:hover {
-                background-color: #145022;
-            }
+      .btn-div button:hover {
+        background-color: #145022;
+      }
 
-            .back-link {
-                display: block;
-                text-align: center;
-                margin-top: 1.5rem;
-                color: #1E6031;
-                text-decoration: none;
-                font-weight: bold;
-                font-size: 1rem;
-            }
+      .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #1e6031;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1rem;
+      }
 
-            .back-link:hover {
-                text-decoration: underline;
-            }
-        </style>
-    </head>
+      .back-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
 
-    <body>
-        <div class="header">
-            <h1>Edit Book</h1>
+  <body>
+    <div class="header">
+      <h1>Edit Book</h1>
+    </div>
+    <div class="content">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="title">Title</label>
+          {{ form.title }}
         </div>
-        <div class="content">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    {{ form.title }}
-                </div>
-                <div class="form-group">
-                    <label for="author">Author</label>
-                    {{ form.author }}
-                </div>
-                <div class="form-group">
-                    <label for="summary">Summary</label>
-                    {{ form.summary }}
-                </div>
-                <div class="form-group">
-                    <label for="category">Category</label>
-                    {{ form.category }}
-                </div>
-                <div class="form-group">
-                    <label for="year">Year</label>
-                    {{ form.year }}
-                </div>
-                <div class="form-group">
-                    <label for="attachment">Attachment</label>
-                    {{ form.attachment }}
-                </div>
-                <div class="btn-div">
-                    <button type="submit">Save Changes</button>
-                </div>
-            </form>
-            <a href="{% url 'book_list' %}" class="back-link">Back to Library</a>
+        <div class="form-group">
+          <label for="author">Author</label>
+          {{ form.author }}
         </div>
-    </body>
+        <div class="form-group">
+          <label for="summary">Summary</label>
+          {{ form.summary }}
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          {{ form.category }}
+        </div>
+        <div class="form-group">
+          <label for="year">Year</label>
+          {{ form.year }}
+        </div>
+        <div class="form-group">
+          <label for="attachment">Attachment</label>
+          {{ form.attachment }}
+        </div>
+        <div class="btn-div">
+          <button type="submit">Save Changes</button>
+        </div>
+      </form>
+      <a href="{% url 'book_list' %}" class="back-link">Back to Library</a>
+    </div>
+  </body>
 </html>

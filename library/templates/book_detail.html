@@ -1,161 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ book.title }}</title>
-        {% load static %}
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/thesis_library.css' %}">
-        <style>
-            body {
-                font-family: 'Inter', sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #f4f4f4;
-                color: #333;
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ book.title }}</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'img/CLSU Logo.png' %}" type="CLSU" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/thesis_library.css' %}" />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
 
-            .header {
-                background-color: #1E6031;
-                color: white;
-                padding: 1.5rem;
-                text-align: center;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                border-bottom: 4px solid #145022;
-            }
+      .header {
+        background-color: #1e6031;
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-bottom: 4px solid #145022;
+      }
 
-            .header h1 {
-                margin: 0;
-                font-size: 2rem;
-                font-weight: 600;
-            }
+      .header h1 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 600;
+      }
 
-            .content {
-                padding: 2rem;
-                max-width: 900px;
-                margin: 2rem auto;
-                background-color: white;
-                border-radius: 8px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
+      .content {
+        padding: 2rem;
+        max-width: 900px;
+        margin: 2rem auto;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
 
-            .details {
-                margin-bottom: 2rem;
-            }
+      .details {
+        margin-bottom: 2rem;
+      }
 
-            .details p {
-                margin: 0.5rem 0;
-                line-height: 1.8;
-                font-size: 1rem;
-            }
+      .details p {
+        margin: 0.5rem 0;
+        line-height: 1.8;
+        font-size: 1rem;
+      }
 
-            .details p strong {
-                font-weight: 600;
-            }
+      .details p strong {
+        font-weight: 600;
+      }
 
-            .btn-div {
-                margin-top: 1.5rem;
-                text-align: right;
-            }
+      .btn-div {
+        margin-top: 1.5rem;
+        text-align: right;
+      }
 
-            .btn-div a {
-                text-decoration: none;
-                padding: 0.75rem 1.5rem;
-                border-radius: 4px;
-                margin-left: 0.5rem;
-                transition: background-color 0.3s ease;
-                font-size: 1rem;
-            }
+      .btn-div a {
+        text-decoration: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        margin-left: 0.5rem;
+        transition: background-color 0.3s ease;
+        font-size: 1rem;
+      }
 
-            .edit {
-                background-color: #4CAF50;
-                color: white;
-            }
+      .edit {
+        background-color: #4caf50;
+        color: white;
+      }
 
-            .edit:hover {
-                background-color: #45a049;
-            }
+      .edit:hover {
+        background-color: #45a049;
+      }
 
-            .archive {
-                background-color: #f44336;
-                color: white;
-            }
+      .archive {
+        background-color: #f44336;
+        color: white;
+      }
 
-            .archive:hover {
-                background-color: #e53935;
-            }
+      .archive:hover {
+        background-color: #e53935;
+      }
 
-            .back-link {
-                display: block;
-                text-align: center;
-                margin-top: 1.5rem;
-                color: #1E6031;
-                text-decoration: none;
-                font-weight: bold;
-                font-size: 1rem;
-            }
+      .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #1e6031;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1rem;
+      }
 
-            .back-link:hover {
-                text-decoration: underline;
-            }
+      .back-link:hover {
+        text-decoration: underline;
+      }
 
-            .pdf-preview {
-                margin-top: 2rem;
-                text-align: center;
-            }
+      .pdf-preview {
+        margin-top: 2rem;
+        text-align: center;
+      }
 
-            .pdf-preview h2 {
-                font-size: 1.5rem;
-                font-weight: 600;
-                margin-bottom: 1rem;
-            }
+      .pdf-preview h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
 
-            .pdf-preview iframe {
-                width: 100%;
-                height: 70vh;
-                border: none;
-                border-radius: 8px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
-        </style>
-    </head>
+      .pdf-preview iframe {
+        width: 100%;
+        height: 70vh;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
 
-    <body>
-        <div class="header">
-            <h1>{{ book.title }}</h1>
+  <body>
+    <div class="header">
+      <h1>{{ book.title }}</h1>
+    </div>
+    <div class="content">
+      <div class="details">
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>Summary:</strong> {{ book.summary|linebreaksbr }}</p>
+        <p><strong>Category:</strong> {{ book.category }}</p>
+        <p><strong>Year:</strong> {{ book.year }}</p>
+
+        {% if book.is_archived %}
+        <p><strong>Status:</strong> Archived</p>
+        {% endif %} {% if book.attachment %}
+        <div class="pdf-preview">
+          <h2>Project Attachment</h2>
+          <iframe src="{{ book.attachment.url }}" frameborder="0"></iframe>
         </div>
-        <div class="content">
-            <div class="details">
-                <p><strong>Author:</strong> {{ book.author }}</p>
-                <p><strong>Summary:</strong> {{ book.summary|linebreaksbr }}</p>
-                <p><strong>Category:</strong> {{ book.category }}</p>
-                <p><strong>Year:</strong> {{ book.year }}</p>
-
-                {% if book.is_archived %}
-                    <p><strong>Status:</strong> Archived</p>
-                {% endif %}
-
-                {% if book.attachment %}
-                    <div class="pdf-preview">
-                        <h2>Project Attachment</h2>
-                        <iframe src="{{ book.attachment.url }}" frameborder="0"></iframe>
-                    </div>
-                {% endif %}
-
-                {% if user.is_staff %}
-                    <div class="btn-div">
-                        <a href="{% url 'edit_book' book.id %}" class="edit">Edit</a>
-                        {% if book.is_archived %}
-                            <a href="{% url 'unarchive_book' book.id %}" class="archive" onclick="return confirm('Unarchive this record?')">Unarchive</a>
-                        {% else %}
-                            <a href="{% url 'archive_book' book.id %}" class="archive" onclick="return confirm('Archive this record?')">Archive</a>
-                        {% endif %}
-                    </div>
-                {% endif %}
-            </div>
-            <a href="{% url 'book_list' %}" class="back-link">Back to Library</a>
+        {% endif %} {% if user.is_staff %}
+        <div class="btn-div">
+          <a href="{% url 'edit_book' book.id %}" class="edit">Edit</a>
+          {% if book.is_archived %}
+          <a
+            href="{% url 'unarchive_book' book.id %}"
+            class="archive"
+            onclick="return confirm('Unarchive this record?')"
+            >Unarchive</a
+          >
+          {% else %}
+          <a
+            href="{% url 'archive_book' book.id %}"
+            class="archive"
+            onclick="return confirm('Archive this record?')"
+            >Archive</a
+          >
+          {% endif %}
         </div>
-    </body>
+        {% endif %}
+      </div>
+      <a href="{% url 'book_list' %}" class="back-link">Back to Library</a>
+    </div>
+  </body>
 </html>

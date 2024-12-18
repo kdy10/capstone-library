@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>About Us</title>
         {% load static %}
+        <link rel="icon" href="{% static 'img/CLSU Logo.png' %}" type="CLSU">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/thesis_library.css' %}">
@@ -29,20 +30,21 @@
                 line-height: 1.6;
             }
 
-            /* Navigation Styles */
-            .navbar {
-                background-color: white;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                z-index: 100;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 1rem 5%;
-            }
+
+        /* Navigation Styles */
+        .navbar {
+            background: -webkit-linear-gradient(-135deg, #f1c40f, #2ecc71);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
 
             .navbar-left {
                 display: flex;
@@ -84,31 +86,51 @@
 
             /* Content Styles */
             .container {
-                max-width: 1400px;
+                max-width: 1200px;
                 margin: 0 auto;
                 padding: 6rem 5% 2rem;
+            }
+
+            .about-us {
+                text-align: center;
+                margin-bottom: 2rem;
+                font-size: 2.5rem;
+                color: var(--primary-color);
+            }
+
+            .about-us-desc {
+                text-align: center;
+                margin-bottom: 2rem;
+                font-size: 1.1rem;
+                color: var(--text-color);
+            }
+
+            .team {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
             }
 
             .team-member {
                 background-color: white;
                 border-radius: 0.5rem;
                 padding: 2rem;
-                margin-bottom: 2rem;
                 box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                display: flex;
-                align-items: center;
+                text-align: center;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .team-member:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 6px 8px rgba(0,0,0,0.15);
             }
 
             .team-member img {
                 border-radius: 50%;
-                width: 100px;
-                height: 100px;
-                margin-right: 1.5rem;
-            }
-
-            .team-details {
-                display: flex;
-                flex-direction: column;
+                width: 150px; /* Increased size */
+                height: 150px; /* Increased size */
+                object-fit: cover; /* Ensures the image maintains its aspect ratio */
+                margin-bottom: 1rem;
             }
 
             .team-details .name {
@@ -134,16 +156,6 @@
                     flex-direction: column;
                     align-items: center;
                     gap: 1rem;
-                }
-
-                .team-member {
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
-                }
-
-                .team-member img {
-                    margin-bottom: 1rem;
                 }
             }
         </style>
@@ -212,8 +224,6 @@
             </div>
 
         </div>
-
-       
 
     </body>
 
